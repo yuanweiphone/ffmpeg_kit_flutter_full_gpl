@@ -19,6 +19,10 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    if (project.android.hasProperty('namespace') ||
+            getGradle().getGradleVersion().substring(0, 1).toInteger() >= 8) {
+        namespace 'com.arthenica.ffmpegkit.flutter'
+    }
     compileSdkVersion 31
 
     defaultConfig {
