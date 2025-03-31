@@ -44,9 +44,22 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+   task setupDependencies(type: Exec) {
+       workingDir '.'
+       commandLine 'sh', '-c', '../scripts/setup_android.sh'
+       onlyIf { !file('libs/ffmpeg-kit-full-gpl-5.1.LTS.aar').exists() }
+   }
 }
+
+preBuild.dependsOn setupDependencies
 
 dependencies {
     implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'com.arthenica:ffmpeg-kit-full-gpl:5.1.LTS'
+    // 原远程依赖配置
+    //  implementation 'com.arthenica:ffmpeg-kit-full-gpl:5.1.LTS'
+    
+    implementation fileTree(dir: 'libs', include: ['*.aar'])  // Replace flatDir with fileTree
+    implementation('com.arthenica:smart-exception-java:0.2.1') // Dependency from Live
+    implementation('com.arthenica:smart-exception-common:0.2.1') // Dependency from Live
 }
+
