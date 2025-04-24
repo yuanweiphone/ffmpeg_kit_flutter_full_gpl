@@ -1,5 +1,28 @@
 # FFmpegKit for Flutter
 
+## 使用方法
+
+在你的项目中的 `pubspec.yaml` 中将 `ffmpeg_kit_flutter_full_gpl` 的依赖替换成下面的即可，只支持 iOS 和 Android。
+
+```yaml
+ffmpeg_kit_flutter_full_gpl:
+  git: https://github.com/hellohejinyu/ffmpeg_kit_flutter_full_gpl.git
+```
+
+注意，如果你是来自中国大陆，你需要确保终端（注意是终端，你的浏览器能够打开 Google 并不意味着你的终端也可以）能够科学上网，因为初始化插件需要从 [GitHub上](https://github.com/hellohejinyu/ffmpeg_kit_flutter_full_gpl/releases/tag/v5.1.LTS) 下载一些资源。否则的话你会碰到不可用的情况。
+
+## Usage
+
+To use this package, simply replace the dependency of `ffmpeg_kit_flutter_full_gpl` in your project's `pubspec.yaml` with the following. Note that this package only supports iOS and Android.
+
+```yaml
+ffmpeg_kit_flutter_full_gpl:
+  git: https://github.com/hellohejinyu/ffmpeg_kit_flutter_full_gpl.git
+```
+
+Important: If you are from Mainland China, please ensure that your terminal (note: your terminal, not just your browser) has access to the internet through a proxy, as the plugin initialization requires downloading resources from [GitHub](https://github.com/hellohejinyu/ffmpeg_kit_flutter_full_gpl/releases/tag/v5.1.LTS). Otherwise, you may encounter functionality issues.
+
+
 ### 1. Features
 
 - Includes both `FFmpeg` and `FFprobe`
