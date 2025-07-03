@@ -1,22 +1,3 @@
-/*
- * Copyright (c) 2019-2021 Taner Sener
- *
- * This file is part of FFmpegKit.
- *
- * FFmpegKit is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * FFmpegKit is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with FFmpegKit.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 /// Statistics entry for an FFmpeg execute session.
 class Statistics {
   int _sessionId;
@@ -28,54 +9,72 @@ class Statistics {
   double _bitrate;
   double _speed;
 
-  Statistics(this._sessionId, this._videoFrameNumber, this._videoFps,
-      this._videoQuality, this._size, this._time, this._bitrate, this._speed);
+  Statistics(
+    this._sessionId,
+    this._videoFrameNumber,
+    this._videoFps,
+    this._videoQuality,
+    this._size,
+    dynamic time, // Puede ser int o double
+    this._bitrate,
+    this._speed,
+  ) : _time = (time is int)
+            ? time
+            : (time is double)
+                ? time.toInt()
+                : throw ArgumentError('El tipo de time debe ser int o double');
 
-  int getSessionId() => this._sessionId;
+  int getSessionId() => _sessionId;
 
   void setSessionId(int sessionId) {
-    this._sessionId = sessionId;
+    _sessionId = sessionId;
   }
 
-  int getVideoFrameNumber() => this._videoFrameNumber;
+  int getVideoFrameNumber() => _videoFrameNumber;
 
   void setVideoFrameNumber(int videoFrameNumber) {
-    this._videoFrameNumber = videoFrameNumber;
+    _videoFrameNumber = videoFrameNumber;
   }
 
-  double getVideoFps() => this._videoFps;
+  double getVideoFps() => _videoFps;
 
   void setVideoFps(double videoFps) {
-    this._videoFps = videoFps;
+    _videoFps = videoFps;
   }
 
-  double getVideoQuality() => this._videoQuality;
+  double getVideoQuality() => _videoQuality;
 
   void setVideoQuality(double videoQuality) {
-    this._videoQuality = videoQuality;
+    _videoQuality = videoQuality;
   }
 
-  int getSize() => this._size;
+  int getSize() => _size;
 
   void setSize(int size) {
-    this._size = size;
+    _size = size;
   }
 
-  int getTime() => this._time;
+  int getTime() => _time;
 
-  void setTime(int time) {
-    this._time = time;
+  void setTime(dynamic time) {
+    if (time is int) {
+      _time = time;
+    } else if (time is double) {
+      _time = time.toInt();
+    } else {
+      throw ArgumentError('El tipo de time debe ser int o double');
+    }
   }
 
-  double getBitrate() => this._bitrate;
+  double getBitrate() => _bitrate;
 
   void setBitrate(double bitrate) {
-    this._bitrate = bitrate;
+    _bitrate = bitrate;
   }
 
-  double getSpeed() => this._speed;
+  double getSpeed() => _speed;
 
   void setSpeed(double speed) {
-    this._speed = speed;
+    _speed = speed;
   }
 }
